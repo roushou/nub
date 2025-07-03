@@ -1,0 +1,3 @@
+[workspace]
+resolver = "3"
+members = ["nub-cli", "templates/rust/axum-basic","templates/rust/blank", "templates/rust/cli-clap"]
