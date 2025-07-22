@@ -1,5 +1,8 @@
 #[derive(thiserror::Error, Debug)]
 pub enum CliError {
+    #[error("Invalid input")]
+    InvalidInput,
+
     #[error("No languages available")]
     NoLanguagesAvailable,
 

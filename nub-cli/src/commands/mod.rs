@@ -1,8 +1,10 @@
 use clap::{Parser, Subcommand};
+use license::LicenseCommand;
 use project::ProjectCommand;
 
 use crate::{commands::template::TemplateCommand, emoji::HUG, errors::CliError};
 
+mod license;
 mod project;
 mod template;
 
@@ -18,6 +20,7 @@ impl Cli {
         let cli = Cli::parse();
         println!("{HUG}\n");
         match &cli.command {
+            Some(Commands::License(cmd)) => cmd.run(),
             Some(Commands::Project(cmd)) => cmd.run(),
             Some(Commands::Template(cmd)) => cmd.run(),
             None => Ok(()),
@@ -27,6 +30,9 @@ impl Cli {
 
 #[derive(Subcommand)]
 enum Commands {
+    /// Use a project license
+    License(LicenseCommand),
+
     /// Create a new project in Rust, Go or TypeScript
     Project(ProjectCommand),
 
